@@ -1,0 +1,101 @@
+@import "~bootstrap/scss/bootstrap";
+
+body {
+    background-color: white;
+    font-family:Cinzel;
+    
+}
+h1{
+    text-align: center;
+    font-family:Cinzel;
+    font-weight: bolder;
+}
+ul, li{
+    
+}
+.navbar,
+.single-element{
+    font-family:Cinzel;
+}
+.single-element-small{
+    font-family:Lemonada;
+    font-size:12px;
+}
+.fraim{
+    border: solid;
+}
+a{
+    text-decoration: none;
+}
+
+.edit{
+    background-color: #FFFF99;
+}
+.add{
+    background-color:#ffcc99;
+}
+.save-btn{
+    background-color:#65605B;
+    color:#ffcc99;
+}
+.save-btn:hover{
+    background-color:#ffcc99;
+    color:#65605B;
+    border:solid;
+}
+.delete,
+.pink{
+    background-color:#FF9999;
+}
+.bck{
+    background-color:#f8d1aa;
+}
+.bck-light{
+    background-color:#fefaf6;
+}
+.head-color{
+    background-color:#f6c492;
+}
+.single-book-list:hover{
+    background-color:#BFAC99;
+}
+.list-group-item {
+    &__line {
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 20px;
+        span {
+            font-size: 24px;
+        }
+        &__buttons {
+            display: flex;
+            .btn {
+                margin: 7px;
+            }
+        }
+    }
+}
+.center-bedge{
+    display: flex;
+    justify-content: center;
+}
+
+.form-check-input.custom {
+    margin-left: 15px;
+}
+
+.form-check.custom {
+    padding-left: 0;
+}
+
+form.sort-form {
+    display: flex;
+    align-content: center;
+    button {
+        height: 38px;
+        margin: 0 10px;
+    }
+}
+.menu-black{
+    background-color: black;
+}

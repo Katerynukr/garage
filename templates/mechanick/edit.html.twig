@@ -1,0 +1,40 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Modify Mechanick Data
+{% endblock %}
+
+{% block body %}
+
+
+	<div class="container">
+		<div class="row justify-content-center">
+			<div class="col-md-8">
+				<div class="card fraim">
+					<div class="card-header head-color">
+						<h1>Modify Master Data</h1>
+					</div>
+
+					<div class="card-body bck">
+						<form action="{{path('mechanick_update', {id: mechanick.id})}}" method="POST">
+							<div class="form-group">
+								<label>Name:
+								</label>
+								<input type="text" class="form-control" name="mechanick_name" value="{{mechanick.name}}">
+								<small class="form-text text-muted">Book title.</small>
+							</div>
+							<div class="form-group">
+								<label>Surname:
+								</label>
+								<input type="text" class="form-control" name="mechanick_surname" value="{{mechanick.surname}}">
+								<small class="form-text text-muted">Book title.</small>
+							</div>
+
+							<input type="hidden" name="token" value="{{ csrf_token('check_csrf_hidden') }}"/>
+							<button type="submit" class="btn save-btn btn-block">Edit Mechanick</button>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+{% endblock %}

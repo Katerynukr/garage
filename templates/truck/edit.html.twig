@@ -1,0 +1,54 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Edit new Truck
+{% endblock %}
+
+{% block body %}
+	<div class="container">
+		<div class="row justify-content-center">
+			<div class="col-md-8">
+				<div class="card fraim">
+					<div class="head-color card-header">
+						<h1>Edit the Truck</h1>
+					</div>
+
+					<div class="card-body bck" >
+						<form action="{{path('truck_update', {id: truck.id})}}" method="POST">
+                            <div class="form-group">
+								<label>Maker:</label>
+								<input type="text" class="form-control" name="truck_maker" value="{{truck.maker}}">
+								<small class="form-text text-muted">Truck maker.</small>
+							</div>
+
+							<div class="form-group">
+								<label>Plate:</label>
+								<input type="text" class="form-control" name="truck_plate" value="{{truck.plate}}">
+								<small class="form-text text-muted">Truck plate.</small>
+							</div>
+
+							<div class="form-group">
+								<label>Year of production:</label>
+								<input type="text" class="form-control" name="truck_make_year" value="{{truck.makeYear}}">
+								<small class="form-text text-muted">Production year.</small>
+							</div>
+							<div class="form-group">
+								Notes:<textarea name="truck_mechanic_notices" id="summernote">{{truck.mechanicNotices}}</textarea>
+							</div>
+							<div class="form-group">
+								<select name="truck_mechanick_id" class="form-control">
+									<option value="0">Select mechanick</option>
+									{% for mechanick in mechanicks %}
+										<option value="{{mechanick.id}}" {% if mechanick.id == truck.mechanicId %} selected {% endif %}>{{mechanick.name}}
+											{{mechanick.surname}}</option>
+									{% endfor %}
+								</select>
+							</div>
+							<input type="hidden" name="token" value="{{ csrf_token('check_csrf_hidden') }}"/>
+							<button type="submit" class="btn save-btn btn-block">Edit Truck</button>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+    </div>
+{% endblock %}

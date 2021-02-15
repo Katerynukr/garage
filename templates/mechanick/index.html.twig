@@ -1,0 +1,77 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Mechanicks List
+{% endblock %}
+
+{% block body %}
+
+	<div class="container">
+		<div class="row justify-content-center">
+			<div class="col-md-8">
+				<div class="card fraim">
+					<div class="card-header head-color">
+						<h1>Mechanicks at garage</h1>
+					</div>
+					<div class="card-body bck-light">
+						<i class="fa fa-address" aria-hidden="true"></i> List order by:
+						<form action="{{ path('mechanick_index')}}" method="GET" class="sort-form">
+							<div class="btn-group">
+								<select name="sort_by" class="btn btn-outline-dark dropdown-toggle">
+									<option value="default">default</option>
+									<option value="sort_by_name_asc" {% if sortBy=='sort_by_name_asc' %} selected {% endif %}>name a-z</option>
+									<option value="sort_by_name_desc" {% if sortBy=='sort_by_name_desc' %} selected {% endif %}>name z-a</option>
+									<option value="sort_by_surname_asc" {% if sortBy=='sort_by_surname_asc' %} selected {% endif %}>surname a-z</option>
+									<option value="sort_by_surname_desc" {% if sortBy=='sort_by_surname_desc' %} selected {% endif %}>surname z-a</option>
+								</select>
+								<button type="submit" class="btn btn-sm">Sort IT!</button>
+								<a href="{{ path('mechanick_index')}}" class="btn btn-sm">
+									<i class="fa fa-eraser" aria-hidden="true"></i>
+								</a>
+							</div>
+						</form>
+
+						<ul class="list-group bck">
+							{% for mechanick in  mechanicks %}
+								<li class="bck list-group-item list-group-item-dark">
+									<div class="list-group-item__line single-element">
+										<span>
+											{{mechanick.name}}
+											{{mechanick.surname}}
+										</span>
+										<div class="list-group-item__line__buttons">
+											<a href="{{ path('mechanick_edit', {id: mechanick.id}) }}" class="edit btn">
+												<i class="fa fa-pencil" aria-hidden="true"></i>
+											</a>
+											<form action="{{ path('mechanick_delete', {id: mechanick.id}) }}" method="POST"> 
+												<input type="hidden" name="token" value="{{ csrf_token('check_csrf_hidden') }}"/>
+												<button type="submit" class="delete btn">
+													<i class="fa fa-trash" aria-hidden="true"></i>
+												</button>
+											</form> 
+										</div>
+									</div>
+									{% if mechanick.trucks|length > 0 %}
+									<h4 class="center-bedge">
+										<span class="pink badge badge-pill badge-secondary">Mechanick's truckss</span>
+									</h4>
+									<ul class="list-group ">
+										{% for truck in mechanick.trucks%}
+											<div>
+                                                <li class="list-group-item bck-light single-book-list">
+                                                <i class="fa fa-book single-book-list" aria-hidden="true"></i>  
+                                                {{truck.maker}}
+                                                </li>
+                                            </div>
+										{% endfor %}
+									</ul>
+									{% endif %}
+								</li>
+							{% endfor %} 
+						</ul>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+{% endblock %}
+

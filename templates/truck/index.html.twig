@@ -1,0 +1,65 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Trucks List
+{% endblock %}
+
+
+{% block body %}
+	<div class="container">
+		<div class="row justify-content-center">
+			<div class="col-md-8">
+				<div class="card fraim">
+					<div class="card-header head-color">
+						<h1>Trucks in Library</h1>
+					</div>
+
+					<div class="card-body bck">
+						List Filter By
+						<form action="{{ path('truck_index')}}" method="GET" class="sort-form">
+							<select name="filter" class="btn btn-outline-dark dropdown-toggle">
+								<option value="0">All</option>
+								{% for mechanick in mechanicks %}
+									<option value="{{mechanick.id}}" {% if mechanicID == mechanick.id %} selected {% endif %}>{{mechanick.name}}
+										{{mechanick.surname}}</option>
+								{% endfor %}
+							</select>
+							<button type="submit" class="btn btn-sm">Filter</button>
+							<a href="{{path('truck_index')}}" class="btn btn-sm">
+								<i class="fa fa-eraser" aria-hidden="true"></i>
+							</a>
+						</form>
+
+						<ul class="list-group bck">
+							{% for truck in trucks %}
+								<li class="bck list-group-item list-group-item-dark">
+									<div class="list-group-item__line">
+										<span>
+											<div class="single-element">
+												{{truck.maker}}
+											</div>
+											<div class="single-element-small">
+												{{truck.mechanic.name}}
+												{{truck.mechanic.surname}}
+											</div>
+										</span>
+										<div class="list-group-item__line__buttons">
+											<a href="{{ path('truck_edit', {id: truck.id}) }}" class=" edit btn">
+												<i class="fa fa-pencil" aria-hidden="true"></i>
+											</a>
+											<form action="{{ path('truck_delete', {id: truck.id}) }}" method="POST">
+												<input type="hidden" name="token" value="{{ csrf_token('check_csrf_hidden') }}"/>
+												<button type="submit" class="delete btn">
+													<i class="fa fa-trash" aria-hidden="true"></i>
+												</button>
+											</form>
+										</div>
+									</div>
+								</li>
+							{% endfor %}
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+{% endblock %}
