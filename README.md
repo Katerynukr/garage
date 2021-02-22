@@ -31,7 +31,7 @@
 - sign up, sign in and sign out funtionality
 - notes field for truckscreated with redactor
 - responsive design of project
-- protection agains SQL 
+- protection agains SQL ijection
 
 
 ### project was made with Symfony framework
